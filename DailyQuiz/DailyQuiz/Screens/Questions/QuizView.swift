@@ -9,24 +9,42 @@ struct QuizView: View {
                 .ignoresSafeArea()
             
             VStack {
-                DQLogoImage()
-                Spacer()
-                QuestionCardView(question: viewModel.currentQuestion) {
-                    if viewModel.isLastQuestion && !viewModel.isFinished {
-                        // MARK: TODO - Results Screen
-                        print(viewModel.totalScore())
-                    } else {
-                        viewModel.nextQuestion()
+                if !viewModel.isFinished {
+                    DQLogoImage()
+                    
+                    Spacer()
+                    
+                    QuestionCardView(question: viewModel.currentQuestion) {
+                        if viewModel.isLastQuestion && !viewModel.isFinished {
+                            viewModel.totalScore()
+                        } else {
+                            viewModel.nextQuestion()
+                        }
                     }
+                    .environmentObject(viewModel)
+                    
+                    Text("Вернуться к предыдущим вопросам нельзя")
+                        .font(.interRegular(size: 10))
+                        .foregroundStyle(.white)
+                        .padding(.top, 12)
+                    
+                    Spacer()
+                    
+                } else {
+                    Text("Результаты")
+                        .font(.interBlack(size: 32))
+                        .foregroundStyle(.white)
+                        .padding(.top, 32)
+                    
+                    ResultsView(result: .getResult(viewModel.score)) {
+                        viewModel.reset()
+                    }
+                    .padding(.top, 40)
+                    
+                    Spacer()
                 }
-                .environmentObject(viewModel)
-                
-                Text("Вернуться к предыдущим вопросам нельзя")
-                    .font(.interRegular(size: 10))
-                    .foregroundStyle(.white)
-                    .padding(.top, 12)
-                Spacer()
             }
+            .padding(.horizontal, 26)
         }
     }
 }

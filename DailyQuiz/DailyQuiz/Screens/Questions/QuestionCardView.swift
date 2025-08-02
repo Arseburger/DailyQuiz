@@ -13,7 +13,8 @@ struct QuestionCardView: View {
                 .padding(.top, 32)
             
             Text(question.question)
-                .bold()
+                .font(.interSemiBold(size: 18))
+                .foregroundStyle(.black)
                 .multilineTextAlignment(.center)
             
             VStack {
@@ -35,6 +36,7 @@ struct QuestionCardView: View {
                     ? .enabled(title)
                     : .disabled(title)
                 )
+                .padding(.bottom, 32)
             }
             .disabled(viewModel.selectedAnswer == nil || viewModel.isFinished)
             
@@ -44,6 +46,5 @@ struct QuestionCardView: View {
             RoundedRectangle(cornerRadius: 46)
                 .fill(.white)
         }
-        .padding(.horizontal, 26)
     }
 }

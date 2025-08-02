@@ -25,7 +25,15 @@ final class QuestionsViewModel: ObservableObject {
         if !isLastQuestion { index += 1 }
     }
     
-    func totalScore() -> String {
+    func reset() {
+        score = 0
+        index = 0
+        selectedAnswer = nil
+        isFinished = false
+        chosenAnswers.removeAll()
+    }
+    
+    func totalScore() {
         if let answer = selectedAnswer, isLastQuestion, !isFinished {
             chosenAnswers.append(answer)
         }
@@ -35,7 +43,7 @@ final class QuestionsViewModel: ObservableObject {
             res += element ? 1 : 0
         }
         isFinished = true
-        return "Your score is \(score)"
+        
     }
     
     init() {

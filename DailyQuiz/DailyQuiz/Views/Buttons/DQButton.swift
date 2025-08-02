@@ -55,6 +55,5 @@ struct DQButton: View {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(type.backgroundColor)
             }
-            .padding(.bottom, 32)
     }
 }
