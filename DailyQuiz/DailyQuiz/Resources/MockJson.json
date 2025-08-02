@@ -1,0 +1,65 @@
+{
+    "response_code": 0,
+    "results": [
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Entertainment: Television",
+            "question": "At which university do &quot;The Big Bang Theory&quot; characters Mr. Wolowitz and Drs. Cooper, Hofstadter and Koothrappali work?",
+            "correct_answer": "Caltech",
+            "incorrect_answers": [
+                "UCLA",
+                "MIT",
+                "UC Berkeley "
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "medium",
+            "category": "Entertainment: Music",
+            "question": "What was the release date of the They Might Be Giants album, &#039;Mink Car?&#039;",
+            "correct_answer": "September 11th, 2001",
+            "incorrect_answers": [
+                "April 17th, 2003",
+                "November 4th, 1999",
+                "December 20th, 2002"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "easy",
+            "category": "Entertainment: Video Games",
+            "question": "In the video game &quot;Team Fortress 2&quot;, which class is able to double jump?",
+            "correct_answer": "Scout",
+            "incorrect_answers": [
+                "Spy",
+                "Engineer",
+                "Pyro"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "hard",
+            "category": "Science &amp; Nature",
+            "question": "What causes the sound of a heartbeat?",
+            "correct_answer": "Closure of the heart valves",
+            "incorrect_answers": [
+                "Contraction of the heart chambers",
+                "Blood exiting the heart",
+                "Relaxation of the heart chambers"
+            ]
+        },
+        {
+            "type": "multiple",
+            "difficulty": "easy",
+            "category": "Entertainment: Video Games",
+            "question": "In which year did the orignal Sims game release?",
+            "correct_answer": "2000",
+            "incorrect_answers": [
+                "2001",
+                "1999",
+                "1998"
+            ]
+        }
+    ]
+}
