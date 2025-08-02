@@ -1,14 +1,16 @@
 import Foundation
 
-struct QuestionsResponse: Codable {
+struct QuestionsResponse: Decodable {
     let responseCode: Int
     let results: [Question]
     
-    static var dummy: QuestionsResponse {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        do {
-            try decoder.decode(QuestionsResponse.self, from: <#T##Data#>)
-        }
+    private enum CodingKeys: String, CodingKey {
+        case responseCode = "response_code"
+        case results
     }
+    
+    static var dummy: QuestionsResponse {
+        MockData.shared.response!
+    }
+    
 }

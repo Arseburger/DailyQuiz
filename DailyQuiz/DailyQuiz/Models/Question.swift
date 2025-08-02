@@ -1,15 +1,47 @@
 import Foundation
 
-struct Question: Codable {
+class Question: Decodable, Identifiable {
+    let id: UUID
     let type: String
     let difficulty: String
     let category: String
     let question: String
-    let correct_answer: String
-    let incorrect_answers: [String]
+    let correctAnswer: String
+    let incorrectAnswers: [String]
+    let allAnswers: [String]
     
-    var allAnswers: [String] {
-        return [correct_answer] + incorrect_answers
+    private enum CodingKeys: String, CodingKey {
+        case type, difficulty, category, question
+        case correctAnswer = "correct_answer"
+        case incorrectAnswers = "incorrect_answers"
+    }
+    
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        id = UUID()
+        type = try container.decodeBase64(String.self, forKey: .type)
+        difficulty = try container.decodeBase64(String.self, forKey: .difficulty)
+        category = try container.decodeBase64(String.self, forKey: .category)
+        question = try container.decodeBase64(String.self, forKey: .question)
+        correctAnswer = try container.decodeBase64(String.self, forKey: .correctAnswer)
+        
+        let base64Answers = try container.decode([String].self, forKey: .incorrectAnswers)
+        incorrectAnswers = base64Answers.map { $0.base64Decoded ?? "INVALID" }
+        self.allAnswers = ([correctAnswer] + incorrectAnswers).shuffled()
+        
+    }
+    
+    init(type: String, difficulty: String, category: String, question: String, correctAnswer: String, incorrectAnswers: [String]) {
+        self.id = UUID()
+        self.type = type
+        self.difficulty = difficulty
+        self.category = category
+        self.question = question
+        self.correctAnswer = correctAnswer
+        self.incorrectAnswers = incorrectAnswers
+        self.allAnswers = ([correctAnswer] + incorrectAnswers).shuffled()
     }
     
     static let dummy: Question = .init(
@@ -17,8 +49,8 @@ struct Question: Codable {
         difficulty: "medium",
         category: "Entertainment: Television",
         question: "At which university do &quot;The Big Bang Theory&quot; characters Mr. Wolowitz and Drs. Cooper, Hofstadter and Koothrappali work?",
-        correct_answer:"Caltech",
-        incorrect_answers: [
+        correctAnswer: "Caltech",
+        incorrectAnswers: [
             "UCLA",
             "MIT",
             "UC Berkeley "

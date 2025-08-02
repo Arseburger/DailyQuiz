@@ -31,6 +31,15 @@ enum DQButtonType {
             return .black
         }
     }
+    
+    var disabled: Bool {
+        switch self {
+        case .enabled(_), .info(_):
+            return false
+        case .disabled(_):
+            return true
+        }
+    }
 }
 
 struct DQButton: View {
@@ -48,8 +57,4 @@ struct DQButton: View {
             }
             .padding(.bottom, 32)
     }
-}
-
-#Preview {
-    DQButton(type: .disabled("Далее"))
 }
