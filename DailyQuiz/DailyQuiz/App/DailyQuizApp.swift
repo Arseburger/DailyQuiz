@@ -8,7 +8,6 @@ struct DailyQuizApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(viewModel)
-                
         }
     }
 }

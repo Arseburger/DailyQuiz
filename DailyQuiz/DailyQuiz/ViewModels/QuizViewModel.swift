@@ -1,13 +1,18 @@
 import Foundation
 
 final class QuizViewModel: ObservableObject {
-    @Published var questions: [Question]
+    @Published var questions: [Question] = []
     @Published var score: Int = 0
     @Published var index: Int = 0
     @Published var selectedAnswer: String?
     @Published var isFinished: Bool = false
     
-    var currentQuestion: Question {
+    init() {
+        startNewQuiz()
+    }
+    
+    
+    var currentQuestion: Question? {
         return questions[index]
     }
     
@@ -32,6 +37,10 @@ final class QuizViewModel: ObservableObject {
     func finishQuiz() {
         isFinished = true
         getTotalScore()
+        
+        let (day, time) = Date.getDateAndTime()
+        
+        let quiz = Quiz(title: "", questions: questions, score: score, completionDate: day, completionTime: time)
     }
     
     func saveAnswer() {
@@ -47,11 +56,28 @@ final class QuizViewModel: ObservableObject {
         }
     }
     
-    init() {
-        if let questionsData = MockData.shared.response?.results {
-            self.questions = questionsData
-        } else {
-            self.questions = []
+    // MARK: API Calls
+    @Published var isLoading: Bool = false
+    @Published var hasError: Bool = false
+    private weak var service: NetworkService? = DI.shared.service
+    
+    @MainActor
+    func loadQuestions(category: String? = nil, difficulty: String? = nil) {
+        isLoading = true
+        if hasError { hasError = false }
+        
+        Task {
+            let response = await self.service?.loadQuestions(category: category, difficulty: difficulty)
+            switch response {
+            case .success(let questionsData):
+                self.questions = questionsData.results
+                isLoading = false
+            case .failure(let error):
+                self.hasError = true
+                isLoading = false
+            default:
+                break
+            }
         }
     }
 }

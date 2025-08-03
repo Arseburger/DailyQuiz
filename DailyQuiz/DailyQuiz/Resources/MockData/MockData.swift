@@ -2,7 +2,7 @@ import Foundation
 
 struct MockData {
     static let shared = MockData()
-    let response: QuestionsResponse?
+    let response: QuizResponse?
     
     init() {
         self.response = try? getFromJsonFile(fileName: "MockJson")

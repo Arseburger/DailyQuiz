@@ -1,6 +1,6 @@
 import Foundation
 
-struct QuestionsResponse: Decodable {
+struct QuizResponse: Codable {
     let responseCode: Int
     let results: [Question]
     
@@ -9,7 +9,7 @@ struct QuestionsResponse: Decodable {
         case results
     }
     
-    static var dummy: QuestionsResponse {
+    static var dummy: QuizResponse {
         MockData.shared.response!
     }
     

@@ -1,8 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
-    @State var hasError: Bool = false
-    @State var isLoading: Bool = false
+    @EnvironmentObject private var viewModel: QuizViewModel
     
     var body: some View {
         NavigationStack {
@@ -13,7 +12,7 @@ struct MainView: View {
                 VStack(alignment: .center) {
                     HistoryButton()
                         .padding(.top, 46)
-                        .opacity(isLoading ? 0 : 1)
+                        .opacity(viewModel.isLoading ? 0 : 1)
                     
                     Spacer()
                     
@@ -33,21 +32,24 @@ struct MainView: View {
                                 type: .enabled
                             )
                         }
+                        .task {
+                            viewModel.loadQuestions()
+                        }
                         .padding(.horizontal)
                         
                     }
                     .cardStyled()
                     .padding(.horizontal)
                     .padding(.bottom, 24)
-                    .opacity(isLoading ? 0 : 1)
-                    .loader(isLoading: $isLoading)
+                    .opacity(viewModel.isLoading ? 0 : 1)
+                    .loader(isLoading: $viewModel.isLoading)
                     
-                    Text(hasError ? "Ошибка! Попробуйте ещё раз" : "")
+                    Text(viewModel.hasError ? "Ошибка! Попробуйте ещё раз" : "")
                         .font(.interBold(size: 20))
                         .foregroundStyle(.white)
                         .frame(height: 20)
                         .padding(.horizontal)
-                        .opacity(hasError || !isLoading ? 1 : 0)
+                        .opacity(viewModel.hasError || !viewModel.isLoading ? 1 : 0)
                     
                     Spacer()
                     Spacer()
