@@ -42,16 +42,25 @@ struct DQButton: View {
         Button {
             action()
         } label: {
-            Text(title().uppercased())
-                .font(.interBlack())
-                .foregroundStyle(type.foregroundColor)
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .background {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(type.backgroundColor)
-                }
+            DQButtonLabel(title: title, type: type)
         }
         .disabled(type.disabled)
+    }
+}
+
+struct DQButtonLabel: View {
+    var title: () -> String
+    var type: DQButtonType
+    
+    var body: some View {
+        Text(title().uppercased())
+            .font(.interBlack())
+            .foregroundStyle(type.foregroundColor)
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .background {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(type.backgroundColor)
+            }
     }
 }

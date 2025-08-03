@@ -1,10 +1,21 @@
 import SwiftUI
 
 struct QuestionsListView: View {
+    @Environment(\.dismiss) private var back
     @EnvironmentObject var viewModel: QuizViewModel
+    
     var body: some View {
         VStack {
-            DQLogoImage()
+            ZStack(alignment: .leading) {
+                
+                BackButton()
+                    .onTapGesture {
+                        back()
+                    }
+                DQLogoImage()
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
+            }
             
             QuestionCardView()
             
@@ -15,5 +26,6 @@ struct QuestionsListView: View {
             
             Spacer()
         }
+        .navigationBarHidden(true)
     }
 }
