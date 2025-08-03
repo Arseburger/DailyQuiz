@@ -1,8 +1,7 @@
 import SwiftUI
 
-struct ResultsView: View {
+struct ScoreView: View {
     var result: QuizResult
-    var action: () -> Void
     
     var body: some View {
         VStack(spacing: 24) {
@@ -22,14 +21,8 @@ struct ResultsView: View {
                     .padding(.top, -12)
             }
             .foregroundStyle(.black)
-            
-            Button {
-                action()
-            } label: {
-                DQButton(type: .enabled("Начать заново"))
-                    .padding(.top, 40)
-            }
         }
+        // MARK: convert to modifier -
         .padding(.horizontal, 24)
         .padding(.vertical, 32)
         .background {

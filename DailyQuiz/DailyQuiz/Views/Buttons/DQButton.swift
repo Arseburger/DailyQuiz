@@ -1,16 +1,9 @@
 import SwiftUI
 
 enum DQButtonType {
-    case enabled(String)
-    case disabled(String)
-    case info(String)
-    
-    var title: String {
-        switch self {
-        case .enabled(let title), .disabled(let title), .info(let title):
-            return title
-        }
-    }
+    case enabled
+    case disabled
+    case info
     
     var backgroundColor: Color {
         switch self {
@@ -22,38 +15,43 @@ enum DQButtonType {
             return .white
         }
     }
-    
     var foregroundColor: Color {
         switch self {
-        case .enabled(_), .disabled(_):
+        case .enabled, .disabled:
             return .white
-        case .info(_):
+        case .info:
             return .black
         }
     }
-    
     var disabled: Bool {
-        switch self {
-        case .enabled(_), .info(_):
-            return false
-        case .disabled(_):
+       if self == .disabled {
             return true
-        }
+       } else {
+           return false
+       }
+        
     }
 }
 
 struct DQButton: View {
+    var title: () -> String
     var type: DQButtonType
     
+    var action: () -> Void
     var body: some View {
-        Text(type.title.uppercased())
-            .font(.interBlack())
-            .foregroundStyle(type.foregroundColor)
-            .frame(maxWidth: .infinity)
-            .frame(height: 50)
-            .background {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(type.backgroundColor)
-            }
+        Button {
+            action()
+        } label: {
+            Text(title().uppercased())
+                .font(.interBlack())
+                .foregroundStyle(type.foregroundColor)
+                .frame(maxWidth: .infinity)
+                .frame(height: 50)
+                .background {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(type.backgroundColor)
+                }
+        }
+        .disabled(type.disabled)
     }
 }

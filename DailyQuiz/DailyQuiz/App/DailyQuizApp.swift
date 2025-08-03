@@ -2,11 +2,11 @@ import SwiftUI
 
 @main
 struct DailyQuizApp: App {
-    var viewModel = QuestionsViewModel()
+    var viewModel = QuizViewModel()
     
     var body: some Scene {
         WindowGroup {
-            QuizView()
+            MainView()
                 .environmentObject(viewModel)
         }
     }
