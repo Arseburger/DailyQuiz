@@ -18,4 +18,8 @@ extension View {
             )
         )
     }
+    
+    func loader(isLoading: Binding<Bool>) -> some View {
+        modifier(loaderView(isLoading: isLoading))
+    }
 }

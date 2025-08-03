@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MainView: View {
+struct QuizView: View {
     @EnvironmentObject var viewModel: QuizViewModel
     
     var body: some View {
