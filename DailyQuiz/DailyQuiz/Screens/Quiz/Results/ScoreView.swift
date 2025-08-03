@@ -22,12 +22,6 @@ struct ScoreView: View {
             }
             .foregroundStyle(.black)
         }
-        // MARK: convert to modifier -
-        .padding(.horizontal, 24)
-        .padding(.vertical, 32)
-        .background {
-            RoundedRectangle(cornerRadius: 46)
-                .fill(.white)
-        }
+        .cardStyled()
     }
 }
