@@ -34,6 +34,13 @@
 		B15294892E3E676700686068 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294882E3E676200686068 /* QuestionView.swift */; };
 		B152949A2E3FA36400686068 /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294992E3FA35F00686068 /* AnswerType.swift */; };
 		B152949C2E3FA43200686068 /* QuestionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B152949B2E3FA42D00686068 /* QuestionType.swift */; };
+		B15294AC2E3FB15D00686068 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294AB2E3FB15D00686068 /* HistoryView.swift */; };
+		B15294AD2E3FB15D00686068 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294AA2E3FB15D00686068 /* HistoryCell.swift */; };
+		B15294AF2E3FB17200686068 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294AE2E3FB17200686068 /* Quiz.swift */; };
+		B15294B12E3FB5D200686068 /* QuizListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294B02E3FB5CC00686068 /* QuizListView.swift */; };
+		B15294B32E3FB68D00686068 /* CardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294B22E3FB68100686068 /* CardStyle.swift */; };
+		B15294B72E3FB8CE00686068 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294B62E3FB8C900686068 /* BackButton.swift */; };
+		B15294B92E3FCEB100686068 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15294B82E3FCEA900686068 /* HistoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +73,13 @@
 		B15294882E3E676200686068 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		B15294992E3FA35F00686068 /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
 		B152949B2E3FA42D00686068 /* QuestionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionType.swift; sourceTree = "<group>"; };
+		B15294AA2E3FB15D00686068 /* HistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
+		B15294AB2E3FB15D00686068 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		B15294AE2E3FB17200686068 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
+		B15294B02E3FB5CC00686068 /* QuizListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListView.swift; sourceTree = "<group>"; };
+		B15294B22E3FB68100686068 /* CardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStyle.swift; sourceTree = "<group>"; };
+		B15294B62E3FB8C900686068 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		B15294B82E3FCEA900686068 /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +136,8 @@
 		B15294482E3CCCC600686068 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B152943B2E3CCCB600686068 /* MainView.swift */,
+				B15294A92E3FB14400686068 /* History */,
 				B152944B2E3CCCED00686068 /* Quiz */,
 			);
 			path = Screens;
@@ -144,6 +160,7 @@
 				B152947C2E3E114D00686068 /* QuizResult.swift */,
 				B15294382E3CCCB600686068 /* Question.swift */,
 				B152943A2E3CCCB600686068 /* QuestionsResponse.swift */,
+				B15294AE2E3FB17200686068 /* Quiz.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -151,9 +168,8 @@
 		B152944B2E3CCCED00686068 /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
-				B152943B2E3CCCB600686068 /* MainView.swift */,
-				B15294872E3E58E200686068 /* Results */,
 				B15294862E3E58D900686068 /* Questions */,
+				B15294872E3E58E200686068 /* Results */,
 			);
 			path = Quiz;
 			sourceTree = "<group>";
@@ -162,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				B152944D2E3CCD5C00686068 /* QuizViewModel.swift */,
+				B15294B82E3FCEA900686068 /* HistoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -180,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				B15294542E3CEA4B00686068 /* ItemBorder.swift */,
+				B15294B22E3FB68100686068 /* CardStyle.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -224,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				B15294502E3CCFB700686068 /* DQButton.swift */,
+				B15294B62E3FB8C900686068 /* BackButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -256,6 +275,16 @@
 				B152947E2E3E13D200686068 /* RatingView.swift */,
 			);
 			path = Results;
+			sourceTree = "<group>";
+		};
+		B15294A92E3FB14400686068 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				B15294AB2E3FB15D00686068 /* HistoryView.swift */,
+				B15294B02E3FB5CC00686068 /* QuizListView.swift */,
+				B15294AA2E3FB15D00686068 /* HistoryCell.swift */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,11 +371,17 @@
 				B15294552E3CEA5500686068 /* ItemBorder.swift in Sources */,
 				B15294412E3CCCB600686068 /* DailyQuizApp.swift in Sources */,
 				B152949A2E3FA36400686068 /* AnswerType.swift in Sources */,
+				B15294B92E3FCEB100686068 /* HistoryViewModel.swift in Sources */,
+				B15294AC2E3FB15D00686068 /* HistoryView.swift in Sources */,
+				B15294AD2E3FB15D00686068 /* HistoryCell.swift in Sources */,
 				B152945A2E3D04A700686068 /* Fonts.swift in Sources */,
 				B15294832E3E577400686068 /* QuestionsListView.swift in Sources */,
 				B15294572E3CEA7600686068 /* View+Modifiers.swift in Sources */,
+				B15294B72E3FB8CE00686068 /* BackButton.swift in Sources */,
+				B15294B12E3FB5D200686068 /* QuizListView.swift in Sources */,
 				B15294422E3CCCB600686068 /* MockData.swift in Sources */,
 				B15294432E3CCCB600686068 /* Question.swift in Sources */,
+				B15294AF2E3FB17200686068 /* Quiz.swift in Sources */,
 				B15294442E3CCCB600686068 /* QuestionCardView.swift in Sources */,
 				B15294892E3E676700686068 /* QuestionView.swift in Sources */,
 				B15294852E3E587900686068 /* ResultView.swift in Sources */,
@@ -354,6 +389,7 @@
 				B152947D2E3E115D00686068 /* QuizResult.swift in Sources */,
 				B152947B2E3E106900686068 /* ScoreView.swift in Sources */,
 				B15294462E3CCCB600686068 /* MainView.swift in Sources */,
+				B15294B32E3FB68D00686068 /* CardStyle.swift in Sources */,
 				B152947F2E3E13E100686068 /* RatingView.swift in Sources */,
 				B152944E2E3CCD6300686068 /* QuizViewModel.swift in Sources */,
 			);

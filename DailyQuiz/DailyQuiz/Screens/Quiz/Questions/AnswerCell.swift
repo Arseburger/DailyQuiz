@@ -4,6 +4,7 @@ struct AnswerCell: View {
     @EnvironmentObject var viewModel: QuizViewModel
     @State var questionType: QuestionType
     let answer: String
+    
     var answerType: AnswerType {
         answerType(forQuestion: questionType)
     }
