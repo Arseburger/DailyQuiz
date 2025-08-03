@@ -1,6 +1,7 @@
 import Foundation
 
-struct Quiz: Identifiable {
+struct Quiz {
+    
     var id: UUID = .init()
     var title: String
     var questions: [Question]

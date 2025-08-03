@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ResultView: View {
+    @Environment(\.dismiss) private var finishGame
     @EnvironmentObject var viewModel: QuizViewModel
     var body: some View {
         VStack {
@@ -25,7 +26,7 @@ struct ResultView: View {
                 }
                 
                 DQButton(title: { "Начать заново" }, type: .info) {
-                    viewModel.startNewQuiz()
+                    finishGame()
                 }
                 .padding(.vertical, 24)
                 .padding(.horizontal, 30)

@@ -1,6 +1,6 @@
 import Foundation
 
-class Question: Decodable, Identifiable {
+class Question: Codable, Identifiable {
     let id: UUID
     let type: String
     let difficulty: String

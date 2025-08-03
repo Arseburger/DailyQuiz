@@ -36,8 +36,8 @@ enum DQButtonType {
 struct DQButton: View {
     var title: () -> String
     var type: DQButtonType
-    
     var action: () -> Void
+    
     var body: some View {
         Button {
             action()
