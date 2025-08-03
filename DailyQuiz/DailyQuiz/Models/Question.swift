@@ -9,6 +9,7 @@ class Question: Decodable, Identifiable {
     let correctAnswer: String
     let incorrectAnswers: [String]
     let allAnswers: [String]
+    var userAnswer: String?
     
     private enum CodingKeys: String, CodingKey {
         case type, difficulty, category, question
@@ -16,6 +17,10 @@ class Question: Decodable, Identifiable {
         case incorrectAnswers = "incorrect_answers"
     }
     
+    func isCorrect() -> Bool {
+        guard let userAnswer = userAnswer else { return false }
+        return userAnswer == correctAnswer
+    }
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
