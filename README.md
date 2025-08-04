@@ -1,52 +1,44 @@
+
 # **DailyQuiz App**
 
+ **Daily Quiz** — приложение для прохождения викторин.
 
-### **Этап 1.**  _Экран с карточкой вопроса (screens/question):_
+### Что удалось реализовать:
 
-## Что было сделано:
+* Стартовый экран:
+  *  переходы к  викторинам и истории;
+  *  отображение лоадера при загрузке вопросв;
+  *  сообщение об ошибке при запросе;
+    
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 44 51" src="https://github.com/user-attachments/assets/25be3eef-0abc-4139-a5be-0abbcbb818f3" />
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 43 10" src="https://github.com/user-attachments/assets/1a21c4e8-4791-4cc7-a6ac-e095d1d0bbe0" />
 
-### _**UI:**_
-* добавлены цвета, шрифты и иконки;
-* кастомный модификатор для создания контура
-* написаны переиспользуемые кнопки:
-  * основная - для навигации;
-  * radioButton - для выбора и последующей проверки правильности ответа;
-* отображение вопроса и 4-х вариантов ответа в ячейках;
-* отмена выбора ответа и отрисовка изменения выбранного ответа (угасание контура на старом ответе и появление на новом);
-* переключение состояния кнопки в зависимости от выбора ответа и номера вопроса;
-* выделение выбранной ячейки (смена фона + цветной контур).
+___
+    
+* Экран истории:
+  * отображение моковых результатов;
+  * удаление через context menu;
+  * баннер при отсутствии результатов;
 
-### _**Логика:**_
-* созданы модели DTO для дальнейшего взаимодействия с API
-* все методы реализованы через @EnvironmentObject viewModel;
-* метод для подсчета итогов викторины (пока без перехода к экрану с результатами);
-* проверки на послелний вопрос и окончание викторины;
-* добавление данных из мокового JSON с преобразованием его из base64 формата.
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 43 20" src="https://github.com/user-attachments/assets/9410f39a-3fb0-4a7e-97c6-5615e2d95424" />
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 43 25" src="https://github.com/user-attachments/assets/b7e4f291-0744-4a93-b4d0-07697ba168fc" />
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 43 53" src="https://github.com/user-attachments/assets/000b09ab-9183-4eef-a100-e54593bfffd6" />
 
-## Первый (любой кроме последнего) вопрос - без выбранного ответа и с ним
-<img width="184" height="400" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-02 at 05 06 20" src="https://github.com/user-attachments/assets/f0fae086-23a7-44a8-a585-34684b5ec791" />
+___
+    
+* Экран викторины:
+  * подсветка выбранного варианта ответа;
+  * изменение состояния кнопки при выборе ответа;
+  * подсчет итогов и переход к результатам;
 
-<img width="184" height="400" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-02 at 05 06 52" src="https://github.com/user-attachments/assets/372453ea-8643-41af-ae57-7cfe493616e9" />
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 44 15" src="https://github.com/user-attachments/assets/0fc7e13e-b6aa-40c8-b10f-480f87c46a71" />
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 44 21" src="https://github.com/user-attachments/assets/2f15b66c-86aa-4295-a126-bb429cb687ac" />
 
-## Последний вопрос
+___
+ 
+* Экран результатов:
+  * количество правильных ответов;
+  * разбор каждого вопроса.
 
-
-1) Ответ не выбран:
-2) Ответ выбран;
-3) Нажата кнопка "завершить", взаимодействие с экраном заблокировано (временный вариант).
-
-<img width="184" height="400" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-02 at 05 07 16" src="https://github.com/user-attachments/assets/3c40d9e5-19c7-4226-ad35-c11bc54f8f37" /> <img width="184" height="400" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-02 at 05 07 26" src="https://github.com/user-attachments/assets/6603a609-70a7-4096-bcdb-83f392e2e14f" /> <img width="184" height="400" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-02 at 05 07 29" src="https://github.com/user-attachments/assets/c4e1ddb4-12fe-4074-b044-cdf02fc26520" />
-
-### **Этап 2.**  _Экран с результатом пройденной викторины (screens/results):_
-
-## Что было сделано:
-
-### _**UI:**_
-• добавлено отобржение результатов викторины после ее завершения и переход на него с последнего вопроса;
-
-### _**Логика:**_
-• подсчет количества правильных ответов для отображения;
-• добавлена модель результата викторины, которая далее будет сохраняться в историю;
-
-####  _**Исправления / дорвботки:**_
-• добавлен недостающий шрифт;
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 44 39" src="https://github.com/user-attachments/assets/0ff35599-8215-4578-a561-2b5362307304" />
+<img width="276" height="600" alt="Simulator Screenshot - iPhone 16 Pro Max - 2025-08-04 at 12 44 32" src="https://github.com/user-attachments/assets/0aad4378-1fef-4365-8304-726e32809913" />
