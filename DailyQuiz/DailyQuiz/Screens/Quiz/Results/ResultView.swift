@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct ResultView: View {
-    @Environment(\.dismiss) private var finishGame
+    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var viewModel: QuizViewModel
+    @EnvironmentObject var historyViewModel: HistoryViewModel
+    
     var body: some View {
         VStack {
             Text("Результаты")
@@ -26,11 +28,18 @@ struct ResultView: View {
                 }
                 
                 DQButton(title: { "Начать заново" }, type: .info) {
-                    finishGame()
+                    historyViewModel.addQuiz(viewModel.quiz!)
+                    dismiss()
                 }
                 .padding(.vertical, 24)
                 .padding(.horizontal, 30)
             }
         }
+        .onDisappear {
+            if viewModel.isFinished {
+                viewModel.resetState()
+            }
+        }
+        .navigationBarHidden(true)
     }
 }

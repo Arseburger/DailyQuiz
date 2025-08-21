@@ -1,50 +1,59 @@
 import SwiftUI
 
-struct AnswerCell: View {
-    @EnvironmentObject var viewModel: QuizViewModel
-    @State var questionType: QuestionType
-    let answer: String
+final class AnswerCellViewModel: ObservableObject {
+    @Published var answer: String
+    @Published var questionType: QuestionType
+    @Published var isCorrect: (String) -> Bool
+    @Published var isSelected: Bool
     
     var answerType: AnswerType {
         answerType(forQuestion: questionType)
     }
     
-    var isCorrect: (String) -> Bool
-    var isSelected: Bool
+    private func answerType(forQuestion type: QuestionType) -> AnswerType {
+        switch type {
+        case .unanswered:
+            return isSelected ? .selected : .empty
+        case .answered:
+            return isSelected ? isCorrect(answer) ? .correct : .wrong : .empty
+        }
+    }
     
+    init(answer: String, questionType: QuestionType, isCorrect: @escaping (String) -> Bool, isSelected: Bool) {
+        self.answer = answer
+        self.questionType = questionType
+        self.isCorrect = isCorrect
+        self.isSelected = isSelected
+    }
+}
+
+struct AnswerCell: View {
+    @ObservedObject var viewModel: AnswerCellViewModel
+    @Binding var selectedAnswer: String?
     var body: some View {
         HStack(spacing: 0) {
-            Image(answerType(forQuestion: questionType).icon)
+            Image(viewModel.answerType.icon)
                 .resizable()
                 .frame(width: 20, height: 20)
                 .padding(16)
             
-            Text(answer)
+            Text(viewModel.answer)
                 .font(.interRegular(size: 14))
-                .foregroundStyle(answerType(forQuestion: questionType).textColor)
+                .foregroundStyle(viewModel.answerType.textColor)
             
             Spacer()
         }
         .frame(height: 52)
         .background {
             RoundedRectangle(cornerRadius: 16)
-                .fill(answerType(forQuestion: questionType).backgroundColor)
-                .bordered(color: answerType(forQuestion: questionType).fillColor)
+                .fill(viewModel.answerType.backgroundColor)
+                .bordered(color: viewModel.answerType.fillColor)
             
         }
         .onTapGesture {
             withAnimation(.smooth(duration: 0.3)) {
-                viewModel.selectedAnswer = isSelected ? nil : answer
+                selectedAnswer = viewModel.isSelected ? nil : viewModel.answer
             }
-        }
-    }
-    
-    func answerType(forQuestion type: QuestionType) -> AnswerType {
-        switch type {
-        case .unanswered:
-            return isSelected ? .selected : .empty
-        case .answered:
-            return isSelected ? isCorrect(answer) ? .correct : .wrong : .empty
         }
     }
 }

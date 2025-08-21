@@ -34,9 +34,10 @@ struct QuestionView: View {
                 
                 VStack {
                     ForEach(question.allAnswers, id: \.self) { answer in
-                        AnswerCell(
-                            questionType: questionType,
+                        
+                        let vm = AnswerCellViewModel(
                             answer: answer,
+                            questionType: questionType,
                             isCorrect: { answer in
                                 answer == question.correctAnswer
                             },
@@ -44,6 +45,8 @@ struct QuestionView: View {
                             ? viewModel.selectedAnswer == answer
                             : question.userAnswer == answer
                         )
+                        
+                        AnswerCell(viewModel: vm, selectedAnswer: $viewModel.selectedAnswer)
                     }
                 }
             }

@@ -13,17 +13,24 @@ final class HistoryViewModel: ObservableObject {
         }
     }
     
+    func addQuiz(_ quiz: Quiz) {
+        guard !quizes.contains(quiz) else {
+            return
+        }
+        quizes.append(quiz)
+    }
+    
     func deleteQuiz(at index: Int) {
         guard index < quizes.count else {
             return
         }
         quizes.remove(at: index)
+        Quiz.count -= 1
     }
     
     init() {
         self.quizes = (1...5).map { index in
             .init(
-                title: "Quiz \(index)",
                 questions: [],
                 score: index,
                 completionDate: "8 июля",

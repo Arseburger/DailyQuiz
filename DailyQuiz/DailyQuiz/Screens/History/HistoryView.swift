@@ -1,17 +1,13 @@
 import SwiftUI
 
 struct HistoryView: View {
-    @StateObject private var viewModel = HistoryViewModel()
-    @Environment(\.dismiss) private var back
-    @State var isShowingPopup: Bool = false
+    @EnvironmentObject private var viewModel: HistoryViewModel
+    @State private var isShowingPopup: Bool = false
     
     var body: some View {
         VStack(spacing: 40) {
             ZStack(alignment: .leading) {
                 BackButton()
-                    .onTapGesture {
-                        back()
-                    }
                 
                 Text("История")
                     .font(.interBlack(size: 32))
@@ -52,7 +48,7 @@ struct HistoryView: View {
         }
     }
     
-    var emptyHistoryView: some View {
+    private var emptyHistoryView: some View {
         return Group {
             statusView(message: "Вы еще не проходили ни одной викторины", buttonTitle: "Начать викторину") { }
             Spacer()
@@ -62,7 +58,7 @@ struct HistoryView: View {
     }
     
     @ViewBuilder
-    func statusView(title: String? = nil, message: String, buttonTitle: String, action: @escaping () -> Void) -> some View {
+    private func statusView(title: String? = nil, message: String, buttonTitle: String, action: @escaping () -> Void) -> some View {
         VStack {
             if let title {
                 Text(title)
