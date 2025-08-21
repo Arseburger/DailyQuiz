@@ -49,42 +49,42 @@ struct MainView: View {
                             )
                         }
                     }
-                }
-                .cardStyled()
-                .padding(.horizontal)
-                .padding(.bottom, 24)
-                .opacity(viewModel.state == .loading ? 0 : 1)
-                
-                if case .error(let message) = viewModel.state {
-                    Text(message)
-                        .font(.interBold(size: 20))
-                        .foregroundStyle(.white)
-                        .frame(height: 20)
-                        .padding(.horizontal)
-                }
-                
-                Spacer()
-                Spacer()
-            }
-            .loader(isLoading: Binding(
-                get: { viewModel.state == .loading },
-                set: { _ in }
-            ))
-        }
-        .navigationDestination(
-            isPresented: Binding(
-                get: {
-                    if case .loaded = viewModel.state { return true }
-                    return false
-                },
-                set: { value in
-                    if !value {
-                        path.removeAll()
-                        viewModel.pauseQuiz()
+                    .cardStyled()
+                    .padding(.horizontal)
+                    .padding(.bottom, 24)
+                    .opacity(viewModel.state == .loading ? 0 : 1)
+                    
+                    if case .error(let message) = viewModel.state {
+                        Text(message)
+                            .font(.interBold(size: 20))
+                            .foregroundStyle(.white)
+                            .frame(height: 20)
+                            .padding(.horizontal)
                     }
+                    
+                    Spacer()
+                    Spacer()
                 }
-            ),
-            destination: { QuizView() }
-        )
+                .loader(isLoading: Binding(
+                    get: { viewModel.state == .loading },
+                    set: { _ in }
+                ))
+            }
+            .navigationDestination(
+                isPresented: Binding(
+                    get: {
+                        if case .loaded = viewModel.state { return true }
+                        return false
+                    },
+                    set: { value in
+                        if !value {
+                            path.removeAll()
+                            viewModel.pauseQuiz()
+                        }
+                    }
+                ),
+                destination: { QuizView() }
+            )
+        }
     }
 }
