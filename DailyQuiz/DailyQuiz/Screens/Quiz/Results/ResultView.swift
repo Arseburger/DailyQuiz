@@ -23,7 +23,11 @@ struct ResultView: View {
                 
                 VStack {
                     ForEach(viewModel.questions.indices, id: \.self) { index in
-                        QuestionView(question: viewModel.questions[index], number: index + 1, questionType: .answered)
+                        QuestionView(
+                            question: viewModel.questions[index],
+                            number: index + 1,
+                            questionType: .answered
+                        )
                     }
                 }
                 
@@ -36,9 +40,7 @@ struct ResultView: View {
             }
         }
         .onDisappear {
-            if viewModel.isFinished {
-                viewModel.resetState()
-            }
+            if viewModel.isFinished { viewModel.resetState() }
         }
         .navigationBarHidden(true)
     }

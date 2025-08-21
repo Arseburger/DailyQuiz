@@ -50,7 +50,11 @@ struct HistoryView: View {
     
     private var emptyHistoryView: some View {
         return Group {
-            statusView(message: "Вы еще не проходили ни одной викторины", buttonTitle: "Начать викторину") { }
+            statusView(
+                message: "Вы еще не проходили ни одной викторины",
+                buttonTitle: "Начать викторину"
+            ) { }
+            
             Spacer()
             DQLogoImage()
                 .padding(.bottom, 72)

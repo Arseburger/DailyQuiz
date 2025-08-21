@@ -6,9 +6,7 @@ struct QuestionsListView: View {
     var body: some View {
         VStack {
             ZStack(alignment: .leading) {
-                BackButton() {
-                    
-                }
+                BackButton()
                 
                 DQLogoImage()
                     .frame(maxWidth: .infinity)

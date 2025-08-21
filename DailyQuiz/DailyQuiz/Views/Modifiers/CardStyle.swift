@@ -14,6 +14,3 @@ struct cardStyle: ViewModifier {
             }
     }
 }
-
-
-

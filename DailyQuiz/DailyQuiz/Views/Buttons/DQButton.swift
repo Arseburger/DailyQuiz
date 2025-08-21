@@ -15,21 +15,13 @@ enum DQButtonType {
             return .white
         }
     }
+    
     var foregroundColor: Color {
-        switch self {
-        case .enabled, .disabled:
-            return .white
-        case .info:
-            return .black
-        }
+        self == .info ? .black : .white
     }
+    
     var disabled: Bool {
-       if self == .disabled {
-            return true
-       } else {
-           return false
-       }
-        
+        self == .disabled ? true : false
     }
 }
 

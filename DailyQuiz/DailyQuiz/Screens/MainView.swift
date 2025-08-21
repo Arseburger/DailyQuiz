@@ -27,70 +27,64 @@ struct MainView: View {
                             .multilineTextAlignment(.center)
                         
                         if case .suspended = viewModel.state {
-                            NavigationLink(destination: {
-                                QuizView()
-                            }, label: {
-                                DQButtonLabel(
-                                    title: { "Продолжить викторину" },
-                                    type: .enabled
-                                )
-                            })
-                            
+                            NavigationLink(
+                                destination: { QuizView() },
+                                label: {
+                                    DQButtonLabel(
+                                        title: { "Продолжить викторину" },
+                                        type: .enabled
+                                    )
+                                }
+                            )
                             .padding(.horizontal)
                         } else {
                             DQButton(
                                 title: { "Начать викторину" },
-                                type: .enabled
-                            ) {
-                                if !viewModel.canKeepQuiz {
-                                    viewModel.loadQuestions()
+                                type: .enabled,
+                                action: {
+                                    if !viewModel.canKeepQuiz {
+                                        viewModel.loadQuestions()
+                                    }
                                 }
-                            }
+                            )
                         }
-                        
-                        
-                        
                     }
-                    .cardStyled()
-                    .padding(.horizontal)
-                    .padding(.bottom, 24)
-                    .opacity(viewModel.state == .loading ? 0 : 1)
-                    
-                    // MARK: Ошибка
-                    if case .error(let message) = viewModel.state {
-                        Text(message)
-                            .font(.interBold(size: 20))
-                            .foregroundStyle(.white)
-                            .frame(height: 20)
-                            .padding(.horizontal)
-                    }
-                    
-                    Spacer()
-                    Spacer()
                 }
-                // 👇 Твой кастомный лоадер
-                .loader(isLoading: Binding(
-                    get: { viewModel.state == .loading },
-                    set: { _ in }
-                ))
+                .cardStyled()
+                .padding(.horizontal)
+                .padding(.bottom, 24)
+                .opacity(viewModel.state == .loading ? 0 : 1)
+                
+                if case .error(let message) = viewModel.state {
+                    Text(message)
+                        .font(.interBold(size: 20))
+                        .foregroundStyle(.white)
+                        .frame(height: 20)
+                        .padding(.horizontal)
+                }
+                
+                Spacer()
+                Spacer()
             }
-            
-            // MARK: Навигация
-            .navigationDestination(
-                isPresented: Binding(
-                    get: {
-                        if case .loaded = viewModel.state { return true }
-                        return false
-                    },
-                    set: { value in
-                        if !value {
-                            path.removeAll()
-                            viewModel.pauseQuiz()
-                        }
-                    }
-                ),
-                destination: { QuizView() }
-            )
+            .loader(isLoading: Binding(
+                get: { viewModel.state == .loading },
+                set: { _ in }
+            ))
         }
+        .navigationDestination(
+            isPresented: Binding(
+                get: {
+                    if case .loaded = viewModel.state { return true }
+                    return false
+                },
+                set: { value in
+                    if !value {
+                        path.removeAll()
+                        viewModel.pauseQuiz()
+                    }
+                }
+            ),
+            destination: { QuizView() }
+        )
     }
 }

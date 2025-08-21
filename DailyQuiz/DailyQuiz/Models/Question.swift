@@ -22,8 +22,26 @@ class Question: Codable, Identifiable {
         return userAnswer == correctAnswer
     }
     
+    init(
+        type: String,
+        difficulty: String,
+        category: String,
+        question: String,
+        correctAnswer: String,
+        incorrectAnswers: [String]
+    ) {
+        self.type = type
+        self.difficulty = difficulty
+        self.category = category
+        self.question = question
+        self.correctAnswer = correctAnswer
+        self.incorrectAnswers = incorrectAnswers
+        self.allAnswers = ([correctAnswer] + incorrectAnswers).shuffled()
+    }
+    
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        let base64Answers = try container.decode([String].self, forKey: .incorrectAnswers)
         
         type = try container.decodeBase64(String.self, forKey: .type)
         difficulty = try container.decodeBase64(String.self, forKey: .difficulty)
@@ -31,19 +49,7 @@ class Question: Codable, Identifiable {
         question = try container.decodeBase64(String.self, forKey: .question)
         correctAnswer = try container.decodeBase64(String.self, forKey: .correctAnswer)
         
-        let base64Answers = try container.decode([String].self, forKey: .incorrectAnswers)
         incorrectAnswers = base64Answers.map { $0.base64Decoded ?? "INVALID" }
-        self.allAnswers = ([correctAnswer] + incorrectAnswers).shuffled()
-        
-    }
-    
-    init(type: String, difficulty: String, category: String, question: String, correctAnswer: String, incorrectAnswers: [String]) {
-        self.type = type
-        self.difficulty = difficulty
-        self.category = category
-        self.question = question
-        self.correctAnswer = correctAnswer
-        self.incorrectAnswers = incorrectAnswers
         self.allAnswers = ([correctAnswer] + incorrectAnswers).shuffled()
     }
 }

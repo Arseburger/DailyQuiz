@@ -20,9 +20,9 @@ struct HistoryCell: View {
                 
                 Group {
                     HStack {
-                        Text(quiz.completionDate)
+                        Text(quiz.completionDate.day)
                         Spacer()
-                        Text(quiz.completionTime)
+                        Text(quiz.completionDate.time)
                     }
                     
                     if
@@ -44,15 +44,6 @@ struct HistoryCell: View {
                     .fill(.white)
                     .shadow(radius: shouldShowMenu ? 8 : 0)
             }
-//            .mask {
-//                GeometryReader { geo in
-//                    let frame = geo.frame(in: .global)
-//                    if shouldShowMenu {
-//                        menuView
-//                    }
-//                    
-//                }
-//            }
         }
     }
     

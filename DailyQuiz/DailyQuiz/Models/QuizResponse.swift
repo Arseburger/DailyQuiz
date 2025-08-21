@@ -12,5 +12,4 @@ struct QuizResponse: Codable {
     static var dummy: QuizResponse {
         MockData.shared.response!
     }
-    
 }

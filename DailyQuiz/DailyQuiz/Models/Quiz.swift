@@ -1,11 +1,7 @@
 import Foundation
 
 struct Quiz {
-    static var count: Int = 0 {
-        didSet {
-            print("TOTAL QUIZZES: \(count)")
-        }
-    }
+    static var count: Int = 0 
     
     var id: UUID = .init()
     var title: String
@@ -13,10 +9,15 @@ struct Quiz {
     var score: Int
     var category: String?
     var difficulty: String?
-    var completionDate: String
-    var completionTime: String
+    var completionDate: (day: String, time: String)
     
-    init(questions: [Question], score: Int, category: String? = nil, difficulty: String? = nil, completionDate: String, completionTime: String) {
+    init(
+        questions: [Question], 
+        score: Int, 
+        category: String? = nil, 
+        difficulty: String? = nil, 
+        completionDate: (String, String),
+    ) {
         Quiz.count += 1
         self.title = "Quiz #\(Quiz.count)"
         self.questions = questions
@@ -24,7 +25,6 @@ struct Quiz {
         self.category = category
         self.difficulty = difficulty
         self.completionDate = completionDate
-        self.completionTime = completionTime
     }
 }
 
@@ -33,3 +33,5 @@ extension Quiz: Equatable {
         lhs.id == rhs.id
     }
 }
+
+// TODO: skeleton -> generic

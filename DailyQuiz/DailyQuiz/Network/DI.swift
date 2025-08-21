@@ -7,4 +7,3 @@ final class DI {
         NetworkService()
     }()
 }
-

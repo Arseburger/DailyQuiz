@@ -27,11 +27,5 @@ struct QuizListView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 24)
-//        .mask {
-//            if selectedQuiz == nil {
-//                Color(.black).opacity(0.1).ignoresSafeArea()
-//                
-//            }
-//        }
     }
 }
