@@ -20,9 +20,9 @@ struct HistoryCell: View {
                 
                 Group {
                     HStack {
-                        Text(quiz.completionDate.day)
+                        Text(quiz.completionDate)
                         Spacer()
-                        Text(quiz.completionDate.time)
+                        Text(quiz.completionTime)
                     }
                     
                     if

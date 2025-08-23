@@ -3,20 +3,22 @@ import Foundation
 struct Quiz {
     static var count: Int = 0 
     
-    var id: UUID = .init()
+    var id: UUID = UUID()
     var title: String
     var questions: [Question]
     var score: Int
     var category: String?
     var difficulty: String?
-    var completionDate: (day: String, time: String)
+    var completionDate: String
+    var completionTime: String
     
     init(
         questions: [Question], 
         score: Int, 
         category: String? = nil, 
         difficulty: String? = nil, 
-        completionDate: (String, String),
+        completionDate: String,
+        completionTime: String,
     ) {
         Quiz.count += 1
         self.title = "Quiz #\(Quiz.count)"
@@ -25,6 +27,7 @@ struct Quiz {
         self.category = category
         self.difficulty = difficulty
         self.completionDate = completionDate
+        self.completionTime = completionTime
     }
 }
 

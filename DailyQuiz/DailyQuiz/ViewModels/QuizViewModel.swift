@@ -46,7 +46,8 @@ extension QuizViewModel {
         quiz = Quiz(
             questions: questions,
             score: score,
-            completionDate: (day, time)
+            completionDate: day,
+            completionTime: time
         )
     }
     

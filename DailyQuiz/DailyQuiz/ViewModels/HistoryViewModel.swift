@@ -27,7 +27,8 @@ final class HistoryViewModel: ObservableObject {
             Quiz(
                 questions: [],
                 score: index,
-                completionDate: ("8 июля", "14:15")
+                completionDate: "8 июля",
+                completionTime: "14:15"
             )
         }
     }

@@ -8,4 +8,8 @@ extension String {
         }
         return decoded
     }
+    
+    var base64Encoded: String {
+        Data(self.utf8).base64EncodedString()
+    }
 }
